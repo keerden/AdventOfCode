@@ -20,7 +20,7 @@ $(BINS): $(OBJS)
 # Include all .d Makefiles
 -include $(DEPS)
 
-$(OBJS): %.o: %.cpp
+src/%.o: src/%.cpp
 	# -MMD flag also creates dependency Makefile
 	$(CXX) $(CFLAGS) $(INCLUDELIBS) -MMD -c $< -o $@
 
