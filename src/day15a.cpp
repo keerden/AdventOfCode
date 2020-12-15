@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#define NUM_TURNS 
+#define NUM_TURNS 30000000
 
 int main()
 {
