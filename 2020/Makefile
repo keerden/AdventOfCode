@@ -12,16 +12,19 @@ LDFLAGS = #-L libs/utils
 CFLAGS = -g -Wall
 
 #all: info libutils $(BINS)
-all: info  $(BINS)
+all: $(BINS)
 
-$(BINS): $(OBJS)
-	$(CXX) -Wall $(LDFLAGS) -o $@ src/$@.o $(LDLIBS)
+#$(BINS): $(OBJS)
+#	$(CXX) -Wall $(LDFLAGS) -o $@ src/$@.o $(LDLIBS)
 
 # Include all .d Makefiles
 -include $(DEPS)
 
+
+%: src/%.o Makefile
+	$(CXX) -Wall $(LDFLAGS) -o $@ $< $(LDLIBS)
+
 src/%.o: src/%.cpp
-	# -MMD flag also creates dependency Makefile
 	$(CXX) $(CFLAGS) $(INCLUDELIBS) -MMD -c $< -o $@
 
 .PHONY : clean
