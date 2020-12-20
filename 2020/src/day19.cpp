@@ -12,7 +12,7 @@
 namespace {
 class Rule {
  public:
-  virtual bool match(std::map<int, Rule *> &ruleset, const std::string &msg,
+  virtual bool match(const std::map<int, Rule *> &ruleset, const std::string &msg,
                      size_t &pos) = 0;
   virtual void printRule() = 0;
 };
@@ -24,7 +24,7 @@ class LiteralRule : public Rule {
  public:
   LiteralRule(char c) : m_match{c} {}
 
-  bool match(std::map<int, Rule *> &ruleset, const std::string &msg,
+  bool match(const std::map<int, Rule *> &ruleset, const std::string &msg,
              size_t &pos) {
     bool result{false};
 
@@ -50,7 +50,7 @@ class SubRule : public Rule {
   }
   SubRule(std::vector<int> &first) { m_subFirst = std::move(first); }
 
-  bool match(std::map<int, Rule *> &ruleset, const std::string &msg,
+  bool match(const std::map<int, Rule *> &ruleset, const std::string &msg,
              size_t &pos) {
     bool match{true};
     size_t oldpos = pos;

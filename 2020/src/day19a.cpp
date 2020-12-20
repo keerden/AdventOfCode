@@ -147,7 +147,7 @@ class RuleSet {
       for(auto pos: output){
         if (pos == m.length()) {
           result++;
-          std::cout << "matched: " << m << "\n";
+           std::cout << "matched: " << m << "\n";
           break;
         }
       }
