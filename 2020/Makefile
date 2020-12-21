@@ -9,7 +9,7 @@ INCLUDELIBS =  # -I  -I libs/utils
 LDLIBS =  -lm
 
 LDFLAGS = #-L libs/utils
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -std=c++2a
 
 #all: info libutils $(BINS)
 all: $(BINS)

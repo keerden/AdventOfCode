@@ -261,8 +261,8 @@ class Image {
   size_t m_sizeY{};
   std::vector<std::vector<bool>> m_img;
 
-  static const size_t monsterW = 20;
-  static const size_t monsterH = 3;
+  static constexpr size_t monsterW = 20;
+  static constexpr size_t monsterH = 3;
 
   bool monster[monsterH][monsterW]{
       {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
