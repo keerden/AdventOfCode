@@ -1,884 +1,236 @@
-xhkdc: fish peanuts
-nqbnmzx: eggs fish peanuts sesame shellfish soy
-ntggc: fish soy
-dhfng: dairy peanuts sesame shellfish wheat
-znrzgs: fish shellfish soy wheat
-pgblcd: eggs sesame
-dstct: peanuts sesame
-ghlzj: peanuts
-result: 2436
-allergens:
-   peanuts: dhfng dstct ghlzj nqbnmzx xhkdc
-   wheat: dhfng znrzgs
-   dairy: dhfng
-   fish: nqbnmzx ntggc xhkdc znrzgs
-   sesame: dhfng dstct nqbnmzx pgblcd
-   eggs: nqbnmzx pgblcd
-   soy: nqbnmzx ntggc znrzgs
-   shellfish: dhfng nqbnmzx znrzgs
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  testing phzm
-  testing kghc
-  testing brdxmlfl
-  testing ckspdd
-  testing tfvcrd
-  testing tsnr
-  testing cnxtjz
-  testing zsmmf
-  testing lgkbt
-  testing crbdxfx
-  testing tzxdf
-  testing bclml
-  testing lfpc
-  testing jmhsl
-  testing kmnmh
-  testing txdjzsk
-  testing mrfqdkt
-  testing fcdf
-  testing bbfxk
-  testing jptf
-  testing pvkrf
-  testing bhnfx
-  testing pmlpk
-  testing pgpgvs
-  testing ntggc
-  testing bgx
-  testing sdvnc
-  testing stndbt
-  testing ksvfdjt
-  testing fthkdz
-  testing qfqskr
-  testing lmfrl
-  testing cd
-  testing hrcfc
-  testing bgmh
-  testing kdkm
-  testing vvv
-  testing dhfng
-  testing xjd
-  testing kmtmlx
-  testing vhbqgc
-  testing hgxz
-  testing rhzdcb
-  testing znrzgs
-  testing pgblcd
-  testing jdvxzv
-  testing fngc
-  testing zmjjbr
-  testing jmbpvd
-  testing dstct
-  testing ssfnt
-  testing sbjzc
-  testing lvbpvc
-  testing kfkjg
-  testing cbsqvgt
-  testing xpfhcf
-  testing pgrc
-  testing xxczt
-  testing ghlzj
-  - solved=peanuts
-  - allergen has multiple ingredients yet:5
-    - checking ingredient dhfng
-    - removing dhfng <-> peanuts
-    - checking ingredient dstct
-    - removing dstct <-> peanuts
-    - checking ingredient ghlzj
-    - checking ingredient nqbnmzx
-    - removing nqbnmzx <-> peanuts
-    - checking ingredient xhkdc
-    - removing xhkdc <-> peanuts
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  - allergen has multiple ingredients yet:4
-    - checking ingredient nqbnmzx
-    - removing nqbnmzx <-> fish
-    - checking ingredient ntggc
-    - removing ntggc <-> fish
-    - checking ingredient xhkdc
-    - checking ingredient znrzgs
-    - removing znrzgs <-> fish
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  testing phzm
-  testing kghc
-  testing brdxmlfl
-  testing ckspdd
-  testing tfvcrd
-  testing tsnr
-  testing cnxtjz
-  testing zsmmf
-  testing lgkbt
-  testing crbdxfx
-  testing tzxdf
-  testing bclml
-  testing lfpc
-  testing jmhsl
-  testing kmnmh
-  testing txdjzsk
-  testing mrfqdkt
-  testing fcdf
-  testing bbfxk
-  testing jptf
-  testing pvkrf
-  testing bhnfx
-  testing pmlpk
-  testing pgpgvs
-  testing ntggc
-  - solved=soy
-  - allergen has multiple ingredients yet:3
-    - checking ingredient nqbnmzx
-    - removing nqbnmzx <-> soy
-    - checking ingredient ntggc
-    - checking ingredient znrzgs
-    - removing znrzgs <-> soy
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  testing phzm
-  testing kghc
-  testing brdxmlfl
-  testing ckspdd
-  testing tfvcrd
-  testing tsnr
-  testing cnxtjz
-  testing zsmmf
-  testing lgkbt
-  testing crbdxfx
-  testing tzxdf
-  testing bclml
-  testing lfpc
-  testing jmhsl
-  testing kmnmh
-  testing txdjzsk
-  testing mrfqdkt
-  testing fcdf
-  testing bbfxk
-  testing jptf
-  testing pvkrf
-  testing bhnfx
-  testing pmlpk
-  testing pgpgvs
-  testing ntggc
-  - solved=soy
-  testing bgx
-  testing sdvnc
-  testing stndbt
-  testing ksvfdjt
-  testing fthkdz
-  testing qfqskr
-  testing lmfrl
-  testing cd
-  testing hrcfc
-  testing bgmh
-  testing kdkm
-  testing vvv
-  testing dhfng
-  testing xjd
-  testing kmtmlx
-  testing vhbqgc
-  testing hgxz
-  testing rhzdcb
-  testing znrzgs
-  testing pgblcd
-  testing jdvxzv
-  testing fngc
-  testing zmjjbr
-  testing jmbpvd
-  testing dstct
-  - solved=sesame
-  - allergen has multiple ingredients yet:4
-    - checking ingredient dhfng
-    - removing dhfng <-> sesame
-    - checking ingredient dstct
-    - checking ingredient nqbnmzx
-    - removing nqbnmzx <-> sesame
-    - checking ingredient pgblcd
-    - removing pgblcd <-> sesame
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  testing phzm
-  testing kghc
-  testing brdxmlfl
-  testing ckspdd
-  testing tfvcrd
-  testing tsnr
-  testing cnxtjz
-  testing zsmmf
-  testing lgkbt
-  testing crbdxfx
-  testing tzxdf
-  testing bclml
-  testing lfpc
-  testing jmhsl
-  testing kmnmh
-  testing txdjzsk
-  testing mrfqdkt
-  testing fcdf
-  testing bbfxk
-  testing jptf
-  testing pvkrf
-  testing bhnfx
-  testing pmlpk
-  testing pgpgvs
-  testing ntggc
-  - solved=soy
-  testing bgx
-  testing sdvnc
-  testing stndbt
-  testing ksvfdjt
-  testing fthkdz
-  testing qfqskr
-  testing lmfrl
-  testing cd
-  testing hrcfc
-  testing bgmh
-  testing kdkm
-  testing vvv
-  testing dhfng
-  testing xjd
-  testing kmtmlx
-  testing vhbqgc
-  testing hgxz
-  testing rhzdcb
-  testing znrzgs
-  testing pgblcd
-  - solved=eggs
-  - allergen has multiple ingredients yet:2
-    - checking ingredient nqbnmzx
-    - removing nqbnmzx <-> eggs
-    - checking ingredient pgblcd
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  - solved=shellfish
-  - allergen has multiple ingredients yet:3
-    - checking ingredient dhfng
-    - removing dhfng <-> shellfish
-    - checking ingredient nqbnmzx
-    - checking ingredient znrzgs
-    - removing znrzgs <-> shellfish
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  - solved=shellfish
-  testing phzm
-  testing kghc
-  testing brdxmlfl
-  testing ckspdd
-  testing tfvcrd
-  testing tsnr
-  testing cnxtjz
-  testing zsmmf
-  testing lgkbt
-  testing crbdxfx
-  testing tzxdf
-  testing bclml
-  testing lfpc
-  testing jmhsl
-  testing kmnmh
-  testing txdjzsk
-  testing mrfqdkt
-  testing fcdf
-  testing bbfxk
-  testing jptf
-  testing pvkrf
-  testing bhnfx
-  testing pmlpk
-  testing pgpgvs
-  testing ntggc
-  - solved=soy
-  testing bgx
-  testing sdvnc
-  testing stndbt
-  testing ksvfdjt
-  testing fthkdz
-  testing qfqskr
-  testing lmfrl
-  testing cd
-  testing hrcfc
-  testing bgmh
-  testing kdkm
-  testing vvv
-  testing dhfng
-  testing xjd
-  testing kmtmlx
-  testing vhbqgc
-  testing hgxz
-  testing rhzdcb
-  testing znrzgs
-  - solved=wheat
-  - allergen has multiple ingredients yet:2
-    - checking ingredient dhfng
-    - removing dhfng <-> wheat
-    - checking ingredient znrzgs
-iteration 
-  testing bvnbp
-  testing rsxpjt
-  testing sts
-  testing jqpc
-  testing dktxc
-  testing vcvcrxx
-  testing mfqqh
-  testing hqnm
-  testing pzvddz
-  testing scdgmh
-  testing vgqftvk
-  testing qlf
-  testing zgthq
-  testing bnhhr
-  testing dfhtlrg
-  testing jzdqp
-  testing dth
-  testing qqtpvf
-  testing rkvq
-  testing kpkv
-  testing zvgdp
-  testing jlls
-  testing rrhg
-  testing jlgr
-  testing tmsllr
-  testing kjzb
-  testing blx
-  testing ggjh
-  testing qnhck
-  testing rbpxvk
-  testing lfglf
-  testing lhvv
-  testing lktt
-  testing crqhxx
-  testing hpvmrm
-  testing fbmjp
-  testing nfh
-  testing xhkdc
-  - solved=fish
-  testing tjrj
-  testing zszg
-  testing mhtrd
-  testing fvz
-  testing shjxf
-  testing kvljbg
-  testing bqlk
-  testing nnqnj
-  testing lhsl
-  testing pnddb
-  testing kmdrkg
-  testing lqjfs
-  testing gsn
-  testing fszjvn
-  testing nqbnmzx
-  - solved=shellfish
-  testing phzm
-  testing kghc
-  testing brdxmlfl
-  testing ckspdd
-  testing tfvcrd
-  testing tsnr
-  testing cnxtjz
-  testing zsmmf
-  testing lgkbt
-  testing crbdxfx
-  testing tzxdf
-  testing bclml
-  testing lfpc
-  testing jmhsl
-  testing kmnmh
-  testing txdjzsk
-  testing mrfqdkt
-  testing fcdf
-  testing bbfxk
-  testing jptf
-  testing pvkrf
-  testing bhnfx
-  testing pmlpk
-  testing pgpgvs
-  testing ntggc
-  - solved=soy
-  testing bgx
-  testing sdvnc
-  testing stndbt
-  testing ksvfdjt
-  testing fthkdz
-  testing qfqskr
-  testing lmfrl
-  testing cd
-  testing hrcfc
-  testing bgmh
-  testing kdkm
-  testing vvv
-  testing dhfng
-  - solved=dairy
-  testing xjd
-  testing kmtmlx
-  testing vhbqgc
-  testing hgxz
-  testing rhzdcb
-  testing znrzgs
-  - solved=wheat
-  testing pgblcd
-  - solved=eggs
-  testing jdvxzv
-  testing fngc
-  testing zmjjbr
-  testing jmbpvd
-  testing dstct
-  - solved=sesame
-  testing ssfnt
-  testing sbjzc
-  testing lvbpvc
-  testing kfkjg
-  testing cbsqvgt
-  testing xpfhcf
-  testing pgrc
-  testing xxczt
-  testing ghlzj
-  - solved=peanuts
-  testing mxrp
-  testing ztc
-  testing pkzs
-  testing dknxl
-  testing svfbm
-  testing pcqd
-  testing ncgqfdk
-  testing ztd
-  testing rxlps
-  testing rmqvb
-  testing rsrncv
-  testing vsn
-  testing fhdx
-  testing vjdvrf
-  testing cbxp
-  testing jjhl
-  testing skhp
-  testing jxrnq
-  testing nntlxx
-  testing dhphkz
-  testing bjp
-  testing nmmv
-  testing xgfgx
-  testing qctchfv
-  testing ndmrz
-  testing bhmvf
-  testing xbgz
-  testing vtcs
-  testing dgsbm
-  testing vmsksq
-  testing thzkkk
-  testing lljxf
-  testing jhxv
-  testing vbdgvk
-  testing ckxdjf
-  testing xcnkt
-  testing jbtf
-  testing gffvc
-  testing xdhc
-  testing dnxdd
-  testing cczqczv
-  testing nffxvs
-  testing tspqs
-  testing nmbdn
-  testing ppcqfhmd
-  testing hqj
-  testing lrj
-  testing brsqck
-  testing zbjnr
-  testing fnll
-  testing lbhzxvf
-  testing nzdttq
-  testing zlgfs
-  testing sdxhbf
-  testing kpd
-  testing tmlz
-  testing qchmh
-  testing dxclx
-  testing bfrhb
-  testing tlsd
-  testing fzlffdz
-  testing dqcg
-  testing mgvs
-  testing bnd
-  testing nt
-  testing snxzjb
-  testing bmvfs
-  testing jjrsrf
-  testing zbblv
-  testing dfdkm
-  testing gdmj
-  testing kdvq
-  testing xppbd
-  testing skzz
-  testing rpbv
-  testing fgxdq
-  testing zjkc
-  testing dzgljz
-  testing zfc
-  testing tzsx
-  testing ddpc
-  testing jsgkn
-  testing rcznlx
-  testing dqjjt
-  testing vpj
-  testing txdcjdc
-  testing fsmz
-  testing ttvvp
-xhkdc: fish
-nqbnmzx: shellfish
-ntggc: soy
-dhfng: dairy
-znrzgs: wheat
-pgblcd: eggs
-dstct: sesame
-ghlzj: peanuts
-result: 192
+===== game 1 =====
+
+-- round 1(1) --
+Player 1's deck: 9 2 6 3 1
+Player 2's deck: 5 8 4 7 10
+Player 1 plays: 9
+Player 2 plays: 5
+Player 1 wins round 1 of game 1
+
+-- round 2(1) --
+Player 1's deck: 2 6 3 1 9 5
+Player 2's deck: 8 4 7 10
+Player 1 plays: 2
+Player 2 plays: 8
+Player 2 wins round 2 of game 1
+
+-- round 3(1) --
+Player 1's deck: 6 3 1 9 5
+Player 2's deck: 4 7 10 8 2
+Player 1 plays: 6
+Player 2 plays: 4
+Player 1 wins round 3 of game 1
+
+-- round 4(1) --
+Player 1's deck: 3 1 9 5 6 4
+Player 2's deck: 7 10 8 2
+Player 1 plays: 3
+Player 2 plays: 7
+Player 2 wins round 4 of game 1
+
+-- round 5(1) --
+Player 1's deck: 1 9 5 6 4
+Player 2's deck: 10 8 2 7 3
+Player 1 plays: 1
+Player 2 plays: 10
+Player 2 wins round 5 of game 1
+
+-- round 6(1) --
+Player 1's deck: 9 5 6 4
+Player 2's deck: 8 2 7 3 10 1
+Player 1 plays: 9
+Player 2 plays: 8
+Player 1 wins round 6 of game 1
+
+-- round 7(1) --
+Player 1's deck: 5 6 4 9 8
+Player 2's deck: 2 7 3 10 1
+Player 1 plays: 5
+Player 2 plays: 2
+Player 1 wins round 7 of game 1
+
+-- round 8(1) --
+Player 1's deck: 6 4 9 8 5 2
+Player 2's deck: 7 3 10 1
+Player 1 plays: 6
+Player 2 plays: 7
+Player 2 wins round 8 of game 1
+
+-- round 9(1) --
+Player 1's deck: 4 9 8 5 2
+Player 2's deck: 3 10 1 7 6
+Player 1 plays: 4
+Player 2 plays: 3
+Playing a sub-game to determine the winner...
+
+===== game 2 =====
+
+-- round 1(2) --
+Player 1's deck: 9 8 5 2
+Player 2's deck: 10 1 7
+Player 1 plays: 9
+Player 2 plays: 10
+Player 2 wins round 1 of game 2
+
+-- round 2(2) --
+Player 1's deck: 8 5 2
+Player 2's deck: 1 7 10 9
+Player 1 plays: 8
+Player 2 plays: 1
+Player 1 wins round 2 of game 2
+
+-- round 3(2) --
+Player 1's deck: 5 2 8 1
+Player 2's deck: 7 10 9
+Player 1 plays: 5
+Player 2 plays: 7
+Player 2 wins round 3 of game 2
+
+-- round 4(2) --
+Player 1's deck: 2 8 1
+Player 2's deck: 10 9 7 5
+Player 1 plays: 2
+Player 2 plays: 10
+Player 2 wins round 4 of game 2
+
+-- round 5(2) --
+Player 1's deck: 8 1
+Player 2's deck: 9 7 5 10 2
+Player 1 plays: 8
+Player 2 plays: 9
+Player 2 wins round 5 of game 2
+
+-- round 6(2) --
+Player 1's deck: 1
+Player 2's deck: 7 5 10 2 9 8
+Player 1 plays: 1
+Player 2 plays: 7
+Player 2 wins round 6 of game 2
+
+The winner of game 2 is player 2
+
+...anyway, back to game 1
+Player 2 wins round 9 of game 1
+
+-- round 10(1) --
+Player 1's deck: 9 8 5 2
+Player 2's deck: 10 1 7 6 3 4
+Player 1 plays: 9
+Player 2 plays: 10
+Player 2 wins round 10 of game 1
+
+-- round 11(1) --
+Player 1's deck: 8 5 2
+Player 2's deck: 1 7 6 3 4 10 9
+Player 1 plays: 8
+Player 2 plays: 1
+Player 1 wins round 11 of game 1
+
+-- round 12(1) --
+Player 1's deck: 5 2 8 1
+Player 2's deck: 7 6 3 4 10 9
+Player 1 plays: 5
+Player 2 plays: 7
+Player 2 wins round 12 of game 1
+
+-- round 13(1) --
+Player 1's deck: 2 8 1
+Player 2's deck: 6 3 4 10 9 7 5
+Player 1 plays: 2
+Player 2 plays: 6
+Playing a sub-game to determine the winner...
+
+===== game 3 =====
+
+-- round 1(3) --
+Player 1's deck: 8 1
+Player 2's deck: 3 4 10 9 7 5
+Player 1 plays: 8
+Player 2 plays: 3
+Player 1 wins round 1 of game 3
+
+-- round 2(3) --
+Player 1's deck: 1 8 3
+Player 2's deck: 4 10 9 7 5
+Player 1 plays: 1
+Player 2 plays: 4
+Playing a sub-game to determine the winner...
+
+===== game 4 =====
+
+-- round 1(4) --
+Player 1's deck: 8
+Player 2's deck: 10 9 7 5
+Player 1 plays: 8
+Player 2 plays: 10
+Player 2 wins round 1 of game 4
+
+The winner of game 4 is player 2
+
+...anyway, back to game 3
+Player 2 wins round 2 of game 3
+
+-- round 3(3) --
+Player 1's deck: 8 3
+Player 2's deck: 10 9 7 5 4 1
+Player 1 plays: 8
+Player 2 plays: 10
+Player 2 wins round 3 of game 3
+
+-- round 4(3) --
+Player 1's deck: 3
+Player 2's deck: 9 7 5 4 1 10 8
+Player 1 plays: 3
+Player 2 plays: 9
+Player 2 wins round 4 of game 3
+
+The winner of game 3 is player 2
+
+...anyway, back to game 1
+Player 2 wins round 13 of game 1
+
+-- round 14(1) --
+Player 1's deck: 8 1
+Player 2's deck: 3 4 10 9 7 5 6 2
+Player 1 plays: 8
+Player 2 plays: 3
+Player 1 wins round 14 of game 1
+
+-- round 15(1) --
+Player 1's deck: 1 8 3
+Player 2's deck: 4 10 9 7 5 6 2
+Player 1 plays: 1
+Player 2 plays: 4
+Playing a sub-game to determine the winner...
+
+===== game 5 =====
+
+-- round 1(5) --
+Player 1's deck: 8
+Player 2's deck: 10 9 7 5
+Player 1 plays: 8
+Player 2 plays: 10
+Player 2 wins round 1 of game 5
+
+The winner of game 5 is player 2
+
+...anyway, back to game 1
+Player 2 wins round 15 of game 1
+
+-- round 16(1) --
+Player 1's deck: 8 3
+Player 2's deck: 10 9 7 5 6 2 4 1
+Player 1 plays: 8
+Player 2 plays: 10
+Player 2 wins round 16 of game 1
+
+-- round 17(1) --
+Player 1's deck: 3
+Player 2's deck: 9 7 5 6 2 4 1 10 8
+Player 1 plays: 3
+Player 2 plays: 9
+Player 2 wins round 17 of game 1
+
+The winner of game 1 is player 2
+
+0result: 291
