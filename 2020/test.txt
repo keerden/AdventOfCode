@@ -1,236 +1,55 @@
-===== game 1 =====
-
--- round 1(1) --
-Player 1's deck: 9 2 6 3 1
-Player 2's deck: 5 8 4 7 10
-Player 1 plays: 9
-Player 2 plays: 5
-Player 1 wins round 1 of game 1
-
--- round 2(1) --
-Player 1's deck: 2 6 3 1 9 5
-Player 2's deck: 8 4 7 10
-Player 1 plays: 2
-Player 2 plays: 8
-Player 2 wins round 2 of game 1
-
--- round 3(1) --
-Player 1's deck: 6 3 1 9 5
-Player 2's deck: 4 7 10 8 2
-Player 1 plays: 6
-Player 2 plays: 4
-Player 1 wins round 3 of game 1
-
--- round 4(1) --
-Player 1's deck: 3 1 9 5 6 4
-Player 2's deck: 7 10 8 2
-Player 1 plays: 3
-Player 2 plays: 7
-Player 2 wins round 4 of game 1
-
--- round 5(1) --
-Player 1's deck: 1 9 5 6 4
-Player 2's deck: 10 8 2 7 3
-Player 1 plays: 1
-Player 2 plays: 10
-Player 2 wins round 5 of game 1
-
--- round 6(1) --
-Player 1's deck: 9 5 6 4
-Player 2's deck: 8 2 7 3 10 1
-Player 1 plays: 9
-Player 2 plays: 8
-Player 1 wins round 6 of game 1
-
--- round 7(1) --
-Player 1's deck: 5 6 4 9 8
-Player 2's deck: 2 7 3 10 1
-Player 1 plays: 5
-Player 2 plays: 2
-Player 1 wins round 7 of game 1
-
--- round 8(1) --
-Player 1's deck: 6 4 9 8 5 2
-Player 2's deck: 7 3 10 1
-Player 1 plays: 6
-Player 2 plays: 7
-Player 2 wins round 8 of game 1
-
--- round 9(1) --
-Player 1's deck: 4 9 8 5 2
-Player 2's deck: 3 10 1 7 6
-Player 1 plays: 4
-Player 2 plays: 3
-Playing a sub-game to determine the winner...
-
-===== game 2 =====
-
--- round 1(2) --
-Player 1's deck: 9 8 5 2
-Player 2's deck: 10 1 7
-Player 1 plays: 9
-Player 2 plays: 10
-Player 2 wins round 1 of game 2
-
--- round 2(2) --
-Player 1's deck: 8 5 2
-Player 2's deck: 1 7 10 9
-Player 1 plays: 8
-Player 2 plays: 1
-Player 1 wins round 2 of game 2
-
--- round 3(2) --
-Player 1's deck: 5 2 8 1
-Player 2's deck: 7 10 9
-Player 1 plays: 5
-Player 2 plays: 7
-Player 2 wins round 3 of game 2
-
--- round 4(2) --
-Player 1's deck: 2 8 1
-Player 2's deck: 10 9 7 5
-Player 1 plays: 2
-Player 2 plays: 10
-Player 2 wins round 4 of game 2
-
--- round 5(2) --
-Player 1's deck: 8 1
-Player 2's deck: 9 7 5 10 2
-Player 1 plays: 8
-Player 2 plays: 9
-Player 2 wins round 5 of game 2
-
--- round 6(2) --
-Player 1's deck: 1
-Player 2's deck: 7 5 10 2 9 8
-Player 1 plays: 1
-Player 2 plays: 7
-Player 2 wins round 6 of game 2
-
-The winner of game 2 is player 2
-
-...anyway, back to game 1
-Player 2 wins round 9 of game 1
-
--- round 10(1) --
-Player 1's deck: 9 8 5 2
-Player 2's deck: 10 1 7 6 3 4
-Player 1 plays: 9
-Player 2 plays: 10
-Player 2 wins round 10 of game 1
-
--- round 11(1) --
-Player 1's deck: 8 5 2
-Player 2's deck: 1 7 6 3 4 10 9
-Player 1 plays: 8
-Player 2 plays: 1
-Player 1 wins round 11 of game 1
-
--- round 12(1) --
-Player 1's deck: 5 2 8 1
-Player 2's deck: 7 6 3 4 10 9
-Player 1 plays: 5
-Player 2 plays: 7
-Player 2 wins round 12 of game 1
-
--- round 13(1) --
-Player 1's deck: 2 8 1
-Player 2's deck: 6 3 4 10 9 7 5
-Player 1 plays: 2
-Player 2 plays: 6
-Playing a sub-game to determine the winner...
-
-===== game 3 =====
-
--- round 1(3) --
-Player 1's deck: 8 1
-Player 2's deck: 3 4 10 9 7 5
-Player 1 plays: 8
-Player 2 plays: 3
-Player 1 wins round 1 of game 3
-
--- round 2(3) --
-Player 1's deck: 1 8 3
-Player 2's deck: 4 10 9 7 5
-Player 1 plays: 1
-Player 2 plays: 4
-Playing a sub-game to determine the winner...
-
-===== game 4 =====
-
--- round 1(4) --
-Player 1's deck: 8
-Player 2's deck: 10 9 7 5
-Player 1 plays: 8
-Player 2 plays: 10
-Player 2 wins round 1 of game 4
-
-The winner of game 4 is player 2
-
-...anyway, back to game 3
-Player 2 wins round 2 of game 3
-
--- round 3(3) --
-Player 1's deck: 8 3
-Player 2's deck: 10 9 7 5 4 1
-Player 1 plays: 8
-Player 2 plays: 10
-Player 2 wins round 3 of game 3
-
--- round 4(3) --
-Player 1's deck: 3
-Player 2's deck: 9 7 5 4 1 10 8
-Player 1 plays: 3
-Player 2 plays: 9
-Player 2 wins round 4 of game 3
-
-The winner of game 3 is player 2
-
-...anyway, back to game 1
-Player 2 wins round 13 of game 1
-
--- round 14(1) --
-Player 1's deck: 8 1
-Player 2's deck: 3 4 10 9 7 5 6 2
-Player 1 plays: 8
-Player 2 plays: 3
-Player 1 wins round 14 of game 1
-
--- round 15(1) --
-Player 1's deck: 1 8 3
-Player 2's deck: 4 10 9 7 5 6 2
-Player 1 plays: 1
-Player 2 plays: 4
-Playing a sub-game to determine the winner...
-
-===== game 5 =====
-
--- round 1(5) --
-Player 1's deck: 8
-Player 2's deck: 10 9 7 5
-Player 1 plays: 8
-Player 2 plays: 10
-Player 2 wins round 1 of game 5
-
-The winner of game 5 is player 2
-
-...anyway, back to game 1
-Player 2 wins round 15 of game 1
-
--- round 16(1) --
-Player 1's deck: 8 3
-Player 2's deck: 10 9 7 5 6 2 4 1
-Player 1 plays: 8
-Player 2 plays: 10
-Player 2 wins round 16 of game 1
-
--- round 17(1) --
-Player 1's deck: 3
-Player 2's deck: 9 7 5 6 2 4 1 10 8
-Player 1 plays: 3
-Player 2 plays: 9
-Player 2 wins round 17 of game 1
-
-The winner of game 1 is player 2
-
-0result: 291
+(3) 8 9 1 2 5 4 6 7 
+(3) 8 9 1 2 5 4 6 7 
+picked 8 9 1
+ looking for smaller value
+2 
+2 = destination
+0
+3 (2) 8 9 1 5 4 6 7 
+picked 8 9 1
+ looking for smaller value
+1 9 8 7 
+7 = destination
+3 2 (5) 4 6 7 8 9 1 
+picked 4 6 7
+ looking for smaller value
+4 3 
+3 = destination
+3 4 6 7 2 5 (8) 9 1 
+picked 9 1 3
+ looking for smaller value
+7 
+7 = destination
+8 (4) 6 7 9 1 3 2 5 
+picked 6 7 9
+ looking for smaller value
+3 
+3 = destination
+8 4 (1) 3 6 7 9 2 5 
+picked 3 6 7
+ looking for smaller value
+9 
+9 = destination
+8 4 1 (9) 3 6 7 2 5 
+picked 3 6 7
+ looking for smaller value
+8 
+8 = destination
+8 3 6 7 4 1 9 (2) 5 
+picked 5 8 3
+ looking for smaller value
+1 
+1 = destination
+2 (6) 7 4 1 5 8 3 9 
+picked 7 4 1
+ looking for smaller value
+5 
+5 = destination
+2 6 (5) 7 4 1 8 3 9 
+picked 7 4 1
+ looking for smaller value
+4 3 
+3 = destination
+2 6 5 (8) 3 7 4 1 9 
+val1: 9 val2 2
+result: 18
