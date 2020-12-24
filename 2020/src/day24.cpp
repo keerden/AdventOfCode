@@ -1,35 +1,110 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <set>
 #include <sstream>
 #include <string>
+#include <unordered_set>
 #include <utility>
 
-
-struct position_s {
+namespace {
+class TilePosition {
+ public:
   int x;
   int y;
-};
 
-bool operator< (const position_s lhs, const position_s rhs){
-    bool result {false};
-    if(lhs.x == rhs.x){
-      result = lhs.y < rhs.y;
-    } else{
-      result = lhs.x < rhs.x;
+  TilePosition(int posx, int posy) : x{posx}, y{posy} {}
+  TilePosition() : TilePosition(0, 0) {}
+  TilePosition(std::string directions) {
+    x = 0;
+    y = 0;
+    size_t strIndex{0};
+
+    while (strIndex < directions.length()) {
+      switch (directions[strIndex]) {
+        case 'e':
+          x += 2;
+          break;
+        case 's':
+          --y;
+          if (directions[++strIndex] == 'e') {
+            ++x;
+          } else {
+            --x;
+          }
+          break;
+        case 'w':
+          x -= 2;
+          break;
+
+        case 'n':
+          ++y;
+          if (directions[++strIndex] == 'e') {
+            ++x;
+          } else {
+            --x;
+          }
+          break;
+        default:
+          std::cout << "unknown direction!, ignoring\n";
+          break;
+      }
+      ++strIndex;
+    }
+  }
+
+  bool operator<(const TilePosition rhs) {
+    bool result{false};
+    if (x == rhs.x) {
+      result = y < rhs.y;
+    } else {
+      result = x < rhs.x;
     }
     return result;
   }
+  bool operator==(const TilePosition &rhs) const {
+    return (this->x == rhs.x && this->y == rhs.y);
+  }
+  bool operator!=(const TilePosition &rhs) const {
+    return (this->x != rhs.x || this->y != rhs.y);
+  }
+  TilePosition operator+(const TilePosition rhs) {
+    return TilePosition(x + rhs.x, y + rhs.y);
+  }
+  TilePosition operator-(const TilePosition rhs) {
+    return TilePosition(x - rhs.x, y - rhs.y);
+  }
+  struct hash {
+    size_t operator()(const TilePosition &p) const {
+      return (std::hash<int>()(p.x)) ^ (std::hash<int>()(p.y));
+    }
+  };
+};
 
-using position = position_s;
-using tileset = std::set<position>;
+using tileset = std::unordered_set<TilePosition, TilePosition::hash>;
+
+class TileFloor {
+ public:
+  void setBlack(TilePosition pos) {
+    auto it = black.find(pos);
+    if (it == black.end()) {
+      black.insert(pos);
+    } else {
+      black.erase(it);
+    }
+  }
+
+  int getBlackCount() { return black.size(); }
+
+ private:
+  tileset black;
+};
+
+}  // namespace
 
 int main() {
   std::string line;
   std::ifstream file;
-  tileset black;
-  int result{0};
+  TileFloor tfloor;
 
   file.open("input/day24.txt");
 
@@ -39,57 +114,10 @@ int main() {
   }
 
   while (getline(file, line)) {
-    position tilepos = {0, 0};
-    size_t strIndex{0};
-
-    while (strIndex < line.length()) {
-      switch (line[strIndex]) {
-        case 'e':
-          tilepos.x += 2;
-          break;
-        case 's':
-          --tilepos.y;
-          if (line[++strIndex] == 'e') {
-            ++tilepos.x;
-          } else {
-            --tilepos.x;
-          }
-          break;
-        case 'w':
-          tilepos.x -= 2;
-          break;
-
-        case 'n':
-          ++tilepos.y;
-          if (line[++strIndex] == 'e') {
-            ++tilepos.x;
-          } else {
-            --tilepos.x;
-          }
-          break;
-        default:
-          std::cout << "unknown direction!, ignoring\n";
-          break;
-      }
-      ++strIndex;
-    }
-
- 
-
-    //std::cout << "flip tile at position (" << tilepos.x << ", " << tilepos.y << ")";
-    //check for position
-    auto it = black.find(tilepos);
-    if(it == black.end()){
-      //std::cout << " to black\n";
-      black.insert(tilepos);
-    }else{
-      //std::cout << " to white\n";
-      black.erase(it);
-    }
-    
+    tfloor.setBlack(TilePosition(line));
   }
 
-  std::cout << black.size() << " black tiles\n";
+  std::cout << tfloor.getBlackCount() << " black tiles\n";
 
   return 0;
 }

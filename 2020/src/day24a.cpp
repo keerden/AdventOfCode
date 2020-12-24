@@ -1,86 +1,170 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
-#include <map>
-#include <set>
 #include <sstream>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <utility>
 
-struct position_s {
+namespace {
+class TilePosition {
+ public:
   int x;
   int y;
+
+  TilePosition(int posx, int posy) : x{posx}, y{posy} {}
+  TilePosition() : TilePosition(0, 0) {}
+  TilePosition(std::string directions) {
+    x = 0;
+    y = 0;
+    size_t strIndex{0};
+
+    while (strIndex < directions.length()) {
+      switch (directions[strIndex]) {
+        case 'e':
+          x += 2;
+          break;
+        case 's':
+          --y;
+          if (directions[++strIndex] == 'e') {
+            ++x;
+          } else {
+            --x;
+          }
+          break;
+        case 'w':
+          x -= 2;
+          break;
+
+        case 'n':
+          ++y;
+          if (directions[++strIndex] == 'e') {
+            ++x;
+          } else {
+            --x;
+          }
+          break;
+        default:
+          std::cout << "unknown direction!, ignoring\n";
+          break;
+      }
+      ++strIndex;
+    }
+  }
+
+  bool operator<(const TilePosition rhs) {
+    bool result{false};
+    if (x == rhs.x) {
+      result = y < rhs.y;
+    } else {
+      result = x < rhs.x;
+    }
+    return result;
+  }
+  bool operator==(const TilePosition &rhs) const {
+    return (this->x == rhs.x && this->y == rhs.y);
+  }
+  bool operator!=(const TilePosition &rhs) const {
+    return (this->x != rhs.x || this->y != rhs.y);
+  }
+  TilePosition operator+(const TilePosition rhs) const{
+    return TilePosition(x + rhs.x, y + rhs.y);
+  }
+  TilePosition operator-(const TilePosition rhs) const{
+    return TilePosition(x - rhs.x, y - rhs.y);
+  }
+  struct hash {
+    size_t operator()(const TilePosition &p) const {
+      return (std::hash<int>()(p.x)) ^ (std::hash<int>()(p.y));
+    }
+  };
 };
 
-using position = position_s;
-using tileset = std::set<position>;
-using tilemap= std::map<position, int>;
+using tileset = std::unordered_set<TilePosition, TilePosition::hash>;
+using tilemap = std::unordered_map<TilePosition, int, TilePosition::hash>;
 
-bool operator<(const position lhs, const position rhs) {
-  bool result{false};
-  if (lhs.x == rhs.x) {
-    result = lhs.y < rhs.y;
-  } else {
-    result = lhs.x < rhs.x;
+class TileFloor {
+ public:
+  void setBlack(TilePosition pos) {
+    auto it = m_black.find(pos);
+    if (it == m_black.end()) {
+      m_black.insert(pos);
+    } else {
+      m_black.erase(it);
+    }
   }
-  return result;
-}
 
-position operator+(const position lhs, const position rhs) {
-  position result;
-  result.x = lhs.x + rhs.x;
-  result.y = lhs.y + rhs.y;
+  int getBlackCount() { return m_black.size(); }
 
-  return result;
-}
+  void flipDay() {
+    tilemap whites;
+    tileset newblack;
 
-bool isBlack(position pos, const tileset &black) {
-  return black.count(pos) > 0;
-}
+    //   std::cout << "day " << i << "\n";
+    for (auto &tile : m_black) {
+      addAdjacentWhite(tile, whites);
+      int adjBlack = numAdjacentBlack(tile);
+      if (adjBlack == 1 || adjBlack == 2) newblack.insert(tile);
+    }
+    //  std::cout << "newblack1 ";
+    //  printTiles(newblack);
 
-int numAdjacentBlack(position pos, const tileset &black) {
-  position adjacent[] = {{2, 0}, {1, -1}, {-1, -1}, {-2, 0}, {-1, 1}, {1, 1}};
-  int count{0};
-
-  for (auto adj : adjacent) {
-    if (isBlack(pos + adj, black)) ++count;
+    for (auto &tile : whites) {
+      if (tile.second == 2) newblack.insert(tile.first);
+    }
+    m_black = std::move(newblack);
   }
-  return count;
-}
 
-void addAdjacentWhite(position pos, tilemap &white, const tileset &black) {
-  position adjacent[] = {{2, 0}, {1, -1}, {-1, -1}, {-2, 0}, {-1, 1}, {1, 1}};
+  void flipDay(int days) {
+    for (int i{0}; i < days; ++i) flipDay();
+  }
 
-  for (auto adj : adjacent) {
-    position p = pos + adj;
-    if (!isBlack(p, black)){
-      auto it = white.find(p);
-      if(it != white.end()){
-        it->second++;
-      }else{
-        white[p] = 1;
+ private:
+  tileset m_black;
+
+  bool isBlack(const TilePosition &pos) {
+    return m_black.count(pos) > 0;
+  }
+
+  int numAdjacentBlack(const TilePosition &pos) {
+    TilePosition adjacent[] = {{2, 0}, {1, -1}, {-1, -1}, {-2, 0}, {-1, 1}, {1, 1}};
+    int count{0};
+
+    for (auto adj : adjacent) {
+      if (isBlack(pos + adj)) ++count;
+    }
+    return count;
+  }
+
+  void addAdjacentWhite(const TilePosition &pos, tilemap &white) {
+    TilePosition adjacent[] = {{2, 0}, {1, -1}, {-1, -1}, {-2, 0}, {-1, 1}, {1, 1}};
+
+    for (auto adj : adjacent) {
+      TilePosition p = pos + adj;
+      if (!isBlack(p)) {
+        auto it = white.find(p);
+        if (it != white.end()) {
+          it->second++;
+        } else {
+          white[p] = 1;
+        }
       }
     }
   }
-}
 
-void printTiles(const tileset &tiles){
-  for(auto &t: tiles)
-    std::cout << "(" << t.x << ", " << t.y << "), ";
-  std::cout << "\n";
-}
+  void printBlackTiles() {
+    for (auto &t : m_black) std::cout << "(" << t.x << ", " << t.y << "), ";
+    std::cout << "\n";
+  }
+};
 
-void printTiles(const tilemap &tiles){
-  for(auto &t: tiles)
-    std::cout << "(" << t.first.x << ", " << t.first.y << ")=" << t.second << ", ";
-  std::cout << "\n";
-}
+}  // namespace
 
 int main() {
   std::string line;
   std::ifstream file;
-  tileset black;
-  int result{0};
+  TileFloor tfloor;
 
   file.open("input/day24.txt");
 
@@ -90,74 +174,14 @@ int main() {
   }
 
   while (getline(file, line)) {
-    position tilepos = {0, 0};
-    size_t strIndex{0};
-
-    while (strIndex < line.length()) {
-      switch (line[strIndex]) {
-        case 'e':
-          tilepos.x += 2;
-          break;
-        case 's':
-          --tilepos.y;
-          if (line[++strIndex] == 'e') {
-            ++tilepos.x;
-          } else {
-            --tilepos.x;
-          }
-          break;
-        case 'w':
-          tilepos.x -= 2;
-          break;
-
-        case 'n':
-          ++tilepos.y;
-          if (line[++strIndex] == 'e') {
-            ++tilepos.x;
-          } else {
-            --tilepos.x;
-          }
-          break;
-        default:
-          std::cout << "unknown direction!, ignoring\n";
-          break;
-      }
-      ++strIndex;
-    }
-
-    auto it = black.find(tilepos);
-    if (it == black.end()) {
-      black.insert(tilepos);
-    } else {
-      black.erase(it);
-    }
+    tfloor.setBlack(TilePosition(line));
   }
 
-  //printTiles(black);
+  // printTiles(black);
 
-  for (int i{0}; i < 100; ++i) {
-    tilemap whites;
-    tileset newblack;
+  tfloor.flipDay(100);
 
- //   std::cout << "day " << i << "\n";
-    for(auto &tile : black){
-      addAdjacentWhite(tile, whites, black);
-      int adjBlack = numAdjacentBlack(tile, black);
-      if(adjBlack == 1 || adjBlack == 2)
-        newblack.insert(tile);
-    }
-  //  std::cout << "newblack1 "; 
-  //  printTiles(newblack);
-
-    for(auto &tile: whites){
-      if(tile.second == 2)
-        newblack.insert(tile.first);
-    }
-    black = std::move(newblack);
-    //std::cout << "day " << i + 1 << ": "<< black.size() << " black tiles\n";
-  }
-
-  std::cout << black.size() << " black tiles\n";
+  std::cout << tfloor.getBlackCount() << " black tiles\n";
 
   return 0;
 }
