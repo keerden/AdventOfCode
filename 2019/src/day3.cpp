@@ -1,203 +1,139 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <climits>
-#include <vector>
-#include <map>
-using namespace std;
+#include <bits/stdc++.h>
 
-typedef struct {
+#include "util.h"
+
+namespace {
+class Point {
+ public:
   int x;
   int y;
-} position;
 
-typedef struct {
-  position from;
-  position to;
-} section;
-
-
-
-inline int dist(int x, int y){
-  return abs(x)+ abs(y);
-}
-
-int main()
-{
-  ifstream file;
-  string line, cmd;
-  stringstream ss;
-  map<int, vector<section>> horizontal;
-  map<int, vector<section>> vertical;
-  position pos {0,0}, newpos{};
-  int min_dist{INT_MAX};
-  int val;
-
-  file.open("input/day3.txt");
-
-  if(!file.is_open()){
-    cout << "unable to open file!" << endl;
-    return 0;
+  int distance() const {
+    return abs(x) + abs(y);    
   }
 
-  getline(file, line);
-  ss.str(line);
-  while(getline(ss, cmd, ',')){
-    section sect;
-    val = stoi(cmd.substr(1));
-    switch(cmd[0]){
+  bool operator==(const Point &other) const {
+    return (x == other.x) && (y == other.y);
+  }
+};
+}  // namespace
+
+namespace std {
+
+template <>
+struct hash<Point> {
+  std::size_t operator()(const Point &p) const {
+    using std::hash;
+
+    return (hash<int>()(p.x) ^ (hash<int>()(p.y) << 1));
+  }
+};
+
+}  // namespace std
+
+void makePointVect(const std::string &steps, std::vector<Point> &outVect) {
+  std::stringstream ss{steps};
+  std::string token;
+
+  Point pos{0, 0};
+  outVect.clear();
+
+  while (getline(ss, token, ',')) {
+    int len = std::stoi(token.substr(1));
+    int dx{0}, dy{0};
+
+    switch (token[0]) {
       case 'D':
-        sect.to = pos;
-        pos.y -= val;
-        sect.from = pos;
-        vertical[pos.x].push_back(sect);
+        dy = -1;
         break;
       case 'U':
-        sect.from = pos;
-        pos.y += val;
-        sect.to = pos;
-        vertical[pos.x].push_back(sect);
+        dy = 1;
         break;
       case 'L':
-        sect.to = pos;
-        pos.x -= val;
-        sect.from = pos;
-        horizontal[pos.y].push_back(sect);
+        dx = -1;
         break;
       case 'R':
-        sect.from = pos;
-        pos.x += val;
-        sect.to = pos;
-        horizontal[pos.y].push_back(sect);
-        break;
-      default:
+        dx = 1;
         break;
     }
-  }
 
-  cout << "horizontals: \n"; 
-
-  for(auto h:horizontal){
-    for(auto s:h.second)
-      cout <<"\tfrom (" << s.from.x << ", " << s.from.y << ") to (" << s.to.x << ", " << s.to.y << ")\n";
-  }
-
-  cout << "verticals: \n"; 
-
-  for(auto h:vertical){
-    for(auto s:h.second)
-      cout <<"\tfrom (" << s.from.x << ", " << s.from.y << ") to (" << s.to.x << ", " << s.to.y << ")\n";
-  }
-
-
-
-  pos = {0,0};
-  getline(file, line);
-  ss.clear();
-  ss.str(line);
-  while(getline(ss, cmd, ',')){
-    val = stoi(cmd.substr(1));
-    switch(cmd[0]){
-      case 'U':{
-        //check crospoints
-        newpos = pos;
-        newpos.y += val;
-        auto it = horizontal.upper_bound(pos.y);
-        bool cross = false;
-        cout << 'U' << val << ":\n";
-        while(!cross && it != horizontal.end() && it->first <= newpos.y && min_dist > dist(pos.x,it->first)){
-          cout << "\thor " << it->first << "\n";
-          for(auto sect: it->second){
-            cout <<"\t\tfrom (" << sect.from.x << ", " << sect.from.y << ") to (" << sect.to.x << ", " << sect.to.y << ")\n";
-            if(sect.from.x <= pos.x && sect.to.x >= pos.x){
-              cross = true;
-              min_dist = min(min_dist, dist(pos.x,it->first));
-              break;
-            }
-          }
-          it++;
-        }
-        pos = newpos;
-        break;
-      }
-      case 'D':{
-        //check crospoints
-        newpos = pos;
-        newpos.y -= val;
-        auto it = horizontal.lower_bound(pos.y - 1);
-        bool cross = false;
-        cout << 'D' << val << ":\n";
-        if(it != horizontal.end()){
-          while(!cross && it != horizontal.begin() && it->first >= newpos.y && min_dist > dist(pos.x,it->first)){
-            cout << "\thor " << it->first << "\n";
-            for(auto sect: it->second){
-              cout <<"\t\tfrom (" << sect.from.x << ", " << sect.from.y << ") to (" << sect.to.x << ", " << sect.to.y << ")\n";
-              if(sect.from.x <= pos.x && sect.to.x >= pos.x){
-                cross = true;
-                min_dist = min(min_dist, dist(pos.x,it->first));
-                break;
-              }
-            }
-            it--;
-          }
-        }
-        pos = newpos;
-        break;
-      }
-      case 'R':{
-        //check crospoints
-        newpos = pos;
-        newpos.x += val;
-        auto it = vertical.upper_bound(pos.x);
-        bool cross = false;
-        cout << 'R' << val << ":\n";
-        while(!cross && it != vertical.end() && it->first <= newpos.x && min_dist > dist(pos.y,it->first)){
-          cout << "\tver " << it->first << "\n";
-          for(auto sect: it->second){
-            cout <<"\t\tfrom (" << sect.from.x << ", " << sect.from.y << ") to (" << sect.to.x << ", " << sect.to.y << ")\n";
-            if(sect.from.y <= pos.y && sect.to.y >= pos.y){
-              cross = true;
-              min_dist = min(min_dist, dist(pos.y,it->first));
-              break;
-            }
-          }
-          it++;
-        }
-        pos = newpos;
-        break;
-      }
-      case 'L':{
-        //check crospoints
-        newpos = pos;
-        newpos.x -= val;
-        auto it = vertical.lower_bound(pos.x - 1);
-        bool cross = false;
-        cout << 'L' << val << ":\n";
-        if(it != vertical.end()){
-          while(!cross && it != vertical.begin() && it->first >= newpos.x && min_dist > dist(pos.y,it->first)){
-            cout << "\tver " << it->first << "\n";
-            for(auto sect: it->second){
-              cout <<"\t\tfrom (" << sect.from.x << ", " << sect.from.y << ") to (" << sect.to.x << ", " << sect.to.y << ")\n";
-              if(sect.from.y <= pos.y && sect.to.y >= pos.y){
-                cross = true;
-                min_dist = min(min_dist, dist(pos.y,it->first));
-                break;
-              }
-            }
-            it--;
-          }
-        }
-        pos = newpos;
-        break;
-      }
-      default:
-        break;
+    for (int i{0}; i < len; ++i) {
+      pos.x += dx;
+      pos.y += dy;
+      outVect.push_back(pos);
     }
   }
+}
+
+void makePointSet(const std::string &steps, std::unordered_set<Point> &outSet) {
+  std::vector<Point> vect;
+  makePointVect(steps, vect);
+
+  outSet.clear();
+  outSet.insert(vect.begin(), vect.end());
+}
+
+int day3_1(const Stringlist &input) {
+  std::vector<Point> wire1;
+  std::unordered_set<Point> wire2;
+  int min_dist{INT_MAX};
+
+  makePointVect(input.get(0), wire1);
+  makePointSet(input.get(1), wire2);
+
+  for(auto &p: wire1){
+    if(wire2.count(p) > 0){
+      min_dist = std::min(min_dist, p.distance());
+    }
+  }
+  return min_dist;
+}
+
+int day3_2(const Stringlist &input) {
+  std::vector<Point> wire1;
+  std::vector<Point> wire2;
+  std::unordered_map<Point, size_t> mapWire2;
 
 
-  cout << "min distance: " << min_dist << endl;
+  int min_step{INT_MAX};
 
-  return 0;
+  makePointVect(input.get(0), wire1);
+  makePointVect(input.get(1), wire2);
+
+  for(size_t i{0}; i < wire2.size(); ++i){
+    mapWire2[wire2[i]] = i;
+  }
+
+  for(size_t i{0}; i < wire1.size(); ++i){
+    auto &p {wire1[i]};
+    if(mapWire2.count(p) > 0){
+      min_step = std::min(min_step, static_cast<int>(i + mapWire2[p] + 2));
+    }
+  }
+  return min_step;
+}
+
+void day3(int part, bool test, std::string filename) {
+  Stringlist slist;
+  if (test) {
+    if (part == 1) {
+      runTest(day3_1(slist.fromString("R8,U5,L5,D3\nU7,R6,D4,L4")), 6);
+      runTest(day3_1(slist.fromString("R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83")), 159);
+      runTest(day3_1(slist.fromString("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7")), 135);
+    } else {
+      runTest(day3_2(slist.fromString("R8,U5,L5,D3\nU7,R6,D4,L4")), 30);
+      runTest(day3_2(slist.fromString("R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83")), 610);
+      runTest(day3_2(slist.fromString("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7")), 410);
+    }
+  } else {
+    if (slist.fromFile(filename)) {
+      int result;
+
+      result = (part == 1) ? day3_1(slist) : day3_2(slist);
+      std::cout << "result: " << result << "\n";
+
+    } else {
+      std::cout << "file not found!\n";
+    }
+  }
 }

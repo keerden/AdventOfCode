@@ -1,45 +1,53 @@
-SRCS = $(wildcard src/*.cpp)
-OBJS = $(patsubst %.cpp,%.o,$(SRCS))
-DEPS = $(OBJS:%.o=%.d)
-BINS = $(subst src/,,$(OBJS))
-BINS ::= $(subst .o,,$(BINS))
+OBJDIR = build
+SRCDIR := src
 
-INCLUDELIBS =  # -I  -I libs/utils
-#LDLIBS = -lutils -lm
+#$(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(CFILES:.c=.o))
+
+
+
+SRCS = $(shell find $(SRCDIR) -type f -name "*.cpp")
+OBJS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SRCS))
+DEPS = $(OBJS:%.o=%.d)
+BIN = solution
+
 LDLIBS =  -lm
 
-LDFLAGS = #-L libs/utils
-CFLAGS = -g -Wall
+# enabled compiler warnings
+WARNINGS := -Wall -Wextra
 
-#all: info libutils $(BINS)
-all: info  $(BINS)
+CFLAGS = -g $(WARNINGS) -std=c++2a
 
-$(BINS): $(OBJS)
-	$(CXX) -Wall $(LDFLAGS) -o $@ src/$@.o $(LDLIBS)
+all: $(BIN)
 
-# Include all .d Makefiles
--include $(DEPS)
+$(BIN): $(OBJS) Makefile
+	$(CXX) -Wall $(LDFLAGS) -o $@ $(OBJS) $(LDLIBS)
 
-src/%.o: src/%.cpp
-	# -MMD flag also creates dependency Makefile
+
+
+
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp Makefile
+	@mkdir -p $(@D)
 	$(CXX) $(CFLAGS) $(INCLUDELIBS) -MMD -c $< -o $@
 
-.PHONY : clean
+
 
 info:
 	$(info $$(SRCS) = $(SRCS))
 	$(info $$(OBJS) = $(OBJS))
 	$(info $$(DEPS) = $(DEPS))
-	$(info $$(BINS) = $(BINS))
+	$(info $$(BIN) = $(BIN))
 
 
 #clean: libutilsclean 
 clean: 
-	-rm $(BINS) $(OBJS) $(DEPS)
+	@rm -f $(OBJS) $(DEPS)
 
+clean-all: clean
+	@rm -f $(BIN)
+	@rm -rf $(OBJDIR)
 
-#libutils:
-#	$(MAKE) -C libs/utils
+# Include all .d Makefiles
+-include $(DEPS)
 
-#libutilsclean:
-#	$(MAKE) -C libs/utils clean
+.PHONY : clean info
