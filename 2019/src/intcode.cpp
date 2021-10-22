@@ -90,6 +90,10 @@ bool Intcode::hasOutput() const {
   return !m_output.empty();
 }
 
+size_t Intcode::outputSize() const {
+  return m_output.size();
+}
+
 void Intcode::printMemory() const {
   for (size_t i{0}; i < m_memory.size(); ++i) {
     std::cout << i << ": " << m_memory[i] << "\n";

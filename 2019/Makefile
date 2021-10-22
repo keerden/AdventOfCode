@@ -22,15 +22,9 @@ all: $(BIN)
 $(BIN): $(OBJS) Makefile
 	$(CXX) -Wall $(LDFLAGS) -o $@ $(OBJS) $(LDLIBS)
 
-
-
-
-
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp Makefile
 	@mkdir -p $(@D)
 	$(CXX) $(CFLAGS) $(INCLUDELIBS) -MMD -c $< -o $@
-
-
 
 info:
 	$(info $$(SRCS) = $(SRCS))

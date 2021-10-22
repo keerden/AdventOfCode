@@ -31,6 +31,7 @@ public:
   ic_word_t getOutput();
   std::string outputToString() const;
   bool hasOutput() const;
+  size_t outputSize() const;
 
   void printMemory() const;
   std::string memToString() const;
