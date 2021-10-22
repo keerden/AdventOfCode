@@ -3,7 +3,7 @@
 #include "intcode.h"
 #include "util.h"
 
-int day5_1(const Stringlist &input) {
+ic_word_t day5_1(const Stringlist &input) {
   Intcode computer(input.get(0));
   computer.setAllInput({1});
   computer.run();
@@ -15,7 +15,7 @@ int day5_1(const Stringlist &input) {
 
   return output.back();
 }
-int day5_2(const std::string &program, int input) {
+ic_word_t day5_2(const std::string &program, ic_word_t input) {
   Intcode computer(program);
   computer.setAllInput({input});
   computer.run();
@@ -29,7 +29,7 @@ void day5(int part, bool test, std::string filename) {
       Intcode computer("3,0,4,0,99");
       computer.setAllInput({42});
       computer.run();
-      runTest(computer.getAllOutput() == std::list<int>{42}, true);
+      runTest(computer.getAllOutput() == std::list<ic_word_t>{42}, true);
 
       computer.reset("1002,4,3,4,33");
       computer.run();
@@ -61,7 +61,7 @@ void day5(int part, bool test, std::string filename) {
     }
   } else {
     if (slist.fromFile(filename)) {
-      int result;
+      ic_word_t result;
 
       result = (part == 1) ? day5_1(slist) : day5_2(slist.get(0), 5);
       std::cout << "result: " << result << "\n";

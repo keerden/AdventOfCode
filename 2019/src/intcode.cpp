@@ -1,6 +1,6 @@
 #include "intcode.h"
 
-Intcode::Intcode(std::vector<int> program) {
+Intcode::Intcode(std::vector<ic_word_t> program) {
   reset(program);
 }
 
@@ -8,9 +8,10 @@ Intcode::Intcode(const std::string &program) {
   reset(program);
 }
 
-void Intcode::reset(std::vector<int> program) {
+void Intcode::reset(std::vector<ic_word_t> program) {
   m_memory = std::move(program);
   m_ip = 0;
+  m_rel_base = 0;
   m_output.clear();
   m_input.clear();
 }
@@ -22,43 +23,67 @@ void Intcode::reset(const std::string &program) {
   m_output.clear();
   m_input.clear();
   m_ip = 0;
+  m_rel_base = 0;
   while (getline(ss, val, ','))
-    m_memory.push_back(stoi(val));
+    m_memory.push_back(stoll(val));
 }
 
-int Intcode::readMem(int addr) const {
-  if (addr < 0 || (size_t)addr >= m_memory.size()) {
-    std::cout << "ERROR, readMem(): address out of bounds!\n";
+ic_word_t Intcode::readMem(ic_word_t addr) {
+  if (addr < 0) {
+    std::cout << "ERROR, readMem(): negative address!\n";
     return 0;
+  }
+  if ((size_t)addr >= m_memory.size()) {
+    m_memory.resize(addr + 1, 0);
   }
   return m_memory[addr];
 }
 
-void Intcode::writeMem(int addr, int value) {
-  if (addr < 0 || (size_t)addr >= m_memory.size()) {
-    std::cout << "ERROR, writeMem(): address out of bounds!\n";
+void Intcode::writeMem(ic_word_t addr, ic_word_t value) {
+  if (addr < 0) {
+    std::cout << "ERROR, writeMem(): negative address!\n";
     return;
+  }
+  if ((size_t)addr >= m_memory.size()) {
+    m_memory.resize(addr + 1, 0);
   }
   m_memory[addr] = value;
 }
 
-void Intcode::setAllInput(const std::list<int> &input) {
+void Intcode::setAllInput(const std::list<ic_word_t> &input) {
   m_input = std::move(input);
 }
 
-void Intcode::setInput(int value) {
+void Intcode::setInput(ic_word_t value) {
   m_input.push_back(value);
 }
 
-const std::list<int> &Intcode::getAllOutput() {
+const std::list<ic_word_t> &Intcode::getAllOutput() {
   return std::move(m_output);
 }
 
-int Intcode::getOutput() {
-  int result = m_output.front();
+ic_word_t Intcode::getOutput() {
+  ic_word_t result = m_output.front();
   m_output.pop_front();
 
   return result;
+}
+
+std::string Intcode::outputToString() const {
+  std::stringstream output{};
+  bool first{true};
+
+  for (ic_word_t i : m_output) {
+    if (first) {
+      first = false;
+    } else {
+      output << ",";
+    }
+
+    output << i;
+  }
+
+  return output.str();
 }
 
 bool Intcode::hasOutput() const {
@@ -75,7 +100,7 @@ std::string Intcode::memToString() const {
   std::stringstream output{};
   bool first{true};
 
-  for (int i : m_memory) {
+  for (ic_word_t i : m_memory) {
     if (first) {
       first = false;
     } else {
@@ -91,12 +116,12 @@ std::string Intcode::memToString() const {
 bool Intcode::run() {
   bool done{false};
   while (m_ip < m_memory.size() && !done) {
-    int isize{1};
-    int opcode;
-    int parmode1, parmode2, parmode3;
+    ic_word_t isize{1};
+    ic_word_t opcode;
+    ic_word_t parmode1, parmode2, parmode3;
 
     //decode instruction
-    int instruction{readMem(m_ip)};
+    ic_word_t instruction{readMem(m_ip)};
 
     opcode = instruction % 100;
     instruction /= 100;
@@ -108,12 +133,12 @@ bool Intcode::run() {
 
     switch (opcode) {
       case 1:  //add
-        writeMem(readMem(m_ip + 3), fetchParam(m_ip + 1, parmode1) + fetchParam(m_ip + 2, parmode2));
+        store(fetch(m_ip + 1, parmode1) + fetch(m_ip + 2, parmode2), m_ip + 3, parmode3);
         isize = 4;
         break;
 
       case 2:  //mul
-        writeMem(readMem(m_ip + 3), fetchParam(m_ip + 1, parmode1) * fetchParam(m_ip + 2, parmode2));
+        store(fetch(m_ip + 1, parmode1) * fetch(m_ip + 2, parmode2), m_ip + 3, parmode3);
         isize = 4;
         break;
 
@@ -121,57 +146,62 @@ bool Intcode::run() {
         if (!hasInput()) {
           return false;
         } else {
-          writeMem(readMem(m_ip + 1), getInput());
+          store(getInput(), m_ip + 1, parmode1);
         }
         isize = 2;
         break;
 
       case 4:  //write to output
-        m_output.push_back(fetchParam(m_ip + 1, parmode1));
+        m_output.push_back(fetch(m_ip + 1, parmode1));
         isize = 2;
         break;
 
       case 5:  //jump if true
-        if (fetchParam(m_ip + 1, parmode1) != 0) {
+        if (fetch(m_ip + 1, parmode1) != 0) {
           isize = 0;
-          m_ip = fetchParam(m_ip + 2, parmode2);
+          m_ip = fetch(m_ip + 2, parmode2);
         } else {
           isize = 3;
         }
         break;
 
       case 6:  //jump if false
-        if (fetchParam(m_ip + 1, parmode1) == 0) {
+        if (fetch(m_ip + 1, parmode1) == 0) {
           isize = 0;
-          m_ip = fetchParam(m_ip + 2, parmode2);
+          m_ip = fetch(m_ip + 2, parmode2);
         } else {
           isize = 3;
         }
         break;
 
       case 7:  //less than
-        if (fetchParam(m_ip + 1, parmode1) < fetchParam(m_ip + 2, parmode2)) {
-          writeMem(readMem(m_ip + 3), 1);
+        if (fetch(m_ip + 1, parmode1) < fetch(m_ip + 2, parmode2)) {
+          store(1, m_ip + 3, parmode3);
         } else {
-          writeMem(readMem(m_ip + 3), 0);
+          store(0, m_ip + 3, parmode3);
         }
         isize = 4;
         break;
 
       case 8:  //equals
-        if (fetchParam(m_ip + 1, parmode1) == fetchParam(m_ip + 2, parmode2)) {
-          writeMem(readMem(m_ip + 3), 1);
+        if (fetch(m_ip + 1, parmode1) == fetch(m_ip + 2, parmode2)) {
+          store(1, m_ip + 3, parmode3);
         } else {
-          writeMem(readMem(m_ip + 3), 0);
+          store(0, m_ip + 3, parmode3);
         }
         isize = 4;
         break;
+      case 9:  //adjust relative base
+        m_rel_base += fetch(m_ip + 1, parmode1);
+        isize = 2;
+        break;
+
       case 99:  //halt
         done = true;
         isize = 1;
         break;
       default:
-        std::cout << "error!\n";
+        std::cout << "error! unknown opcode: " << opcode << "\n";
         return true;
         break;
     }
@@ -180,8 +210,8 @@ bool Intcode::run() {
   return true;
 }
 
-int Intcode::fetchParam(int ip, int mode) const {
-  int result{0};
+ic_word_t Intcode::fetch(ic_word_t ip, int mode) {
+  ic_word_t result{0};
   switch (mode) {
     case 0:  //load from memory
       result = readMem(readMem(ip));
@@ -189,20 +219,37 @@ int Intcode::fetchParam(int ip, int mode) const {
     case 1:  //immediate
       result = readMem(ip);
       break;
+    case 2:  //immediate
+      result = readMem(readMem(ip) + m_rel_base);
+      break;
   }
   return result;
 }
 
-void Intcode::setOutput(int value){
+void Intcode::store(ic_word_t value, ic_word_t ip, int mode) {
+  switch (mode) {
+    case 0:  //load from memory
+      writeMem(readMem(ip), value);
+      break;
+    case 1:  //immediate
+      std::cout << "error! unable to store at immediate parameter\n";
+      break;
+    case 2:  //immediate
+      writeMem(readMem(ip) + m_rel_base, value);
+      break;
+  }
+}
+
+void Intcode::setOutput(ic_word_t value) {
   m_output.push_back(value);
 }
 
-int Intcode::getInput(){
-  int result = m_input.front();
+ic_word_t Intcode::getInput() {
+  ic_word_t result = m_input.front();
   m_input.pop_front();
   return result;
 }
 
-bool Intcode::hasInput() const{
+bool Intcode::hasInput() const {
   return !m_input.empty();
 }

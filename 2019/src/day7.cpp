@@ -3,16 +3,16 @@
 #include "intcode.h"
 #include "util.h"
 
-int maxOutput(int input, const std::unordered_set<int> &phases, const std::string &program){
-  int max{INT_MIN};
+ic_word_t maxOutput(ic_word_t input, const std::unordered_set<ic_word_t> &phases, const std::string &program){
+  ic_word_t max{std::numeric_limits<ic_word_t>::min()};
 
   for(auto &phase: phases){
     Intcode computer(program);
     computer.setAllInput({phase, input});
     computer.run();
-    int output {computer.getAllOutput().front()};
+    ic_word_t output {computer.getAllOutput().front()};
 
-    std::unordered_set<int> newset = phases;  
+    std::unordered_set<ic_word_t> newset = phases;  
     newset.erase(phase);                
     if(newset.empty()){
       max = std::max(max, output);
@@ -24,14 +24,14 @@ int maxOutput(int input, const std::unordered_set<int> &phases, const std::strin
   return max;
 }
 
-int runFeedbackConfig(const std::vector<int> &config, const std::string &program){
+ic_word_t runFeedbackConfig(const std::vector<ic_word_t> &config, const std::string &program){
   std::vector<Intcode> amps;
   for(auto conf : config){
     amps.emplace_back(program);
     amps.back().setInput(conf);
   }
 
-  int input{0}, output{0};
+  ic_word_t input{0}, output{0};
   bool done{false};
 
   do{
@@ -49,17 +49,17 @@ int runFeedbackConfig(const std::vector<int> &config, const std::string &program
 }
 
 
-int day7_1(const std::string &program) {
-  int result;
+ic_word_t day7_1(const std::string &program) {
+  ic_word_t result;
 
   result = maxOutput(0, {0,1,2,3,4}, program);
   
   return result;
 }
-int day7_2(const std::string &program) {
-  int max{INT_MIN};
+ic_word_t day7_2(const std::string &program) {
+  ic_word_t max{std::numeric_limits<ic_word_t>::min()};
 
-  std::vector<int> phases{5,6,7,8,9};
+  std::vector<ic_word_t> phases{5,6,7,8,9};
 
   do{
     max = std::max(max, runFeedbackConfig(phases, program));
@@ -82,7 +82,7 @@ void day7(int part, bool test, std::string filename) {
     }
   } else {
     if (slist.fromFile(filename)) {
-      int result;
+      ic_word_t result;
 
       result = (part == 1) ? day7_1(slist.get(0)) : day7_2(slist.get(0));
       std::cout << "result: " << result << "\n";

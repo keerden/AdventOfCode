@@ -3,7 +3,7 @@
 #include "intcode.h"
 #include "util.h"
 
-int day2_1(const Stringlist &input) {
+ic_word_t day2_1(const Stringlist &input) {
   Intcode computer(input.get(0));
   computer.writeMem(1, 12);
   computer.writeMem(2, 2);
@@ -11,8 +11,8 @@ int day2_1(const Stringlist &input) {
 
   return computer.readMem(0);
 }
-int day2_2(const Stringlist &input) {
-  int noun, verb;
+ic_word_t day2_2(const Stringlist &input) {
+  ic_word_t noun, verb;
   bool done{false};
 
   for (noun = 0; noun < 100; noun++) {
@@ -59,7 +59,7 @@ void day2(int part, bool test, std::string filename) {
 
   } else {
     if (slist.fromFile(filename)) {
-      int result;
+      ic_word_t result;
 
       result = (part == 1) ? day2_1(slist) : day2_2(slist);
       std::cout << "result: " << result << "\n";
