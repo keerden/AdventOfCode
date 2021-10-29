@@ -203,6 +203,8 @@ bool Intcode::run() {
       case 99:  //halt
         done = true;
         isize = 1;
+        m_rel_base = 0;
+        m_ip = 0;
         break;
       default:
         std::cout << "error! unknown opcode: " << opcode << "\n";

@@ -28,4 +28,37 @@ bool runTest(TResult1 result, TResult2 expected, std::string testname = "") {
   return (result == expected);
 }
 
+class Position2D {
+ public:
+  int x;
+  int y;
+  Position2D(int x, int y) : x{x}, y{y} {};
+  Position2D(void) : x{0}, y{0} {};
+
+  bool operator==(const Position2D &rhs) const {
+    return (x == rhs.x) && (y == rhs.y);
+  }
+  friend std::ostream &operator<<(std::ostream &output, const Position2D &p) {
+    output << "(" << p.x << ", " << p.y << ")";
+    return output;
+  }
+
+  bool operator<(const Position2D &rhs) const {
+    return (y < rhs.y) || ((y == rhs.y) && (x < rhs.x));
+  }
+
+};
+
+namespace std {
+
+template <>
+struct hash<Position2D> {
+  std::size_t operator()(const Position2D &p) const {
+    using std::hash;
+
+    return (hash<int>()(p.x) ^ (hash<int>()(p.y) << 1));
+  }
+};
+}  //namespace std
+
 #endif
