@@ -9,7 +9,7 @@ class Board {
   std::vector<int> countY;
   size_t width;
   size_t height;
-  std::map<int, Position2D> numbers;
+  std::unordered_map<int, Position2D> numbers;
 
  public:
   Board(const std::vector<int> &input) {
