@@ -4,6 +4,19 @@
 
 using basin_t = std::unordered_set<Position2D>;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 int day9_1(const Stringlist &input) {
   std::vector<std::vector<unsigned char>> map;
   int risksum{0};
