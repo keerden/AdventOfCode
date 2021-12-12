@@ -5,7 +5,7 @@
 using solution_t = void (*)(int, bool, std::string);
 
 std::vector<solution_t> solutions = {day1, day2, day3, day4, day5, day6, day7, day8, day9, day10
-                                    , day11};
+                                    , day11, day12};
 
 void printUsage(char *name) {
   std::cout << "Usage " << name << " daynr [[part = 1] [file = input/day[nr].txt]]\n";
