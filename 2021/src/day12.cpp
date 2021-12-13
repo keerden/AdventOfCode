@@ -32,7 +32,7 @@ class caveMap {
     return visit("start", small_visited, true);
   }
 
-  int countPathsDouble() {
+  size_t countPathsDouble() {
     std::unordered_multiset<std::string> small_visited;
 
     return visit("start", small_visited, false);
@@ -88,7 +88,7 @@ class caveMap {
 
 }  //namespace
 
-int day12_1(const Stringlist &input) {
+size_t day12_1(const Stringlist &input) {
   caveMap cmap(input);
 
   return cmap.countPaths();
