@@ -48,6 +48,13 @@ class Position2D {
     return (y < rhs.y) || ((y == rhs.y) && (x < rhs.x));
   }
 
+  Position2D operator+(const Position2D &rhs) const{
+    return Position2D(x + rhs.x, y + rhs.y);
+  }
+
+  Position2D operator-(const Position2D &rhs) const{
+    return Position2D(x - rhs.x, y - rhs.y);
+  }
 };
 
 namespace std {
