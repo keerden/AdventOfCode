@@ -23,7 +23,7 @@ struct subset {
 
 };
 
-struct subset parseSubset(const std::string &input) {
+static struct subset parseSubset(const std::string &input) {
     struct subset result = {0,0,0};
     std::stringstream buffer{input};
     std::string subsetString;
@@ -49,7 +49,7 @@ struct subset parseSubset(const std::string &input) {
     return result;
 }
 
-int checkGame(const std::string &line) {
+static int checkGame(const std::string &line) {
     std::string temp;
     std::size_t colon = line.find(":");
     int gameId;
@@ -67,7 +67,7 @@ int checkGame(const std::string &line) {
     return gameId;
 }
 
-long int minGame(const std::string &line) {
+static long int minGame(const std::string &line) {
     std::string temp;
     std::size_t colon = line.find(":");
     std::stringstream subsets{line.substr(colon + 1)};
